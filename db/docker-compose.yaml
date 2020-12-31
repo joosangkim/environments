@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  mwav-db:
+    container_name: mwav-db
+    image: mysql:5.7.25
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: mwav
+      MYSQL_PASSWORD: mwav123!@#
+      MYSQL_DATABASE: mwav
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - 13306:3306
+    volumes: 
+      - ./scripts:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql
+    
